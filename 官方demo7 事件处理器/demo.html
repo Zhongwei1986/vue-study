@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--监听事件-->
+  <div id="example-1">
+    <button @click="counter += 1">增加1</button>
+    <p>这个按钮被点击了{{ counter }}次。</p>
+  </div>
+
+  <!--方法事件处理器-->
+  <div id="example-2"><button @click="greet">Greet</button></div>
+
+  <!--内联处理器方法-->
+  <div id="example-3">
+    <button @click="say('hi')">Say hi</button>
+    <button @click="say('what')">Say what</button>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    var example1 = new Vue({
+      el: '#example-1',
+      data: {
+        counter: 0
+      }
+    })
+
+    var example2 = new Vue({
+      el: '#example-2',
+      data: {
+        name: 'Vue.js'
+      },
+      methods: {
+        greet: function(event) {
+          alert('Hello ' + this.name + '!');
+          alert(event.target.tagName)
+        }
+      }
+    })
+
+    var example3 = new Vue({
+      el: '#example-3',
+      methods: {
+        say: function(message) {
+          alert(message);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
