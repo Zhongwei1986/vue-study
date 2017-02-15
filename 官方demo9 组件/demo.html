@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<div id="example">
+  <my-component></my-component>
+</div>
+
+<br>
+<div id="example-2">
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+</div>
+
+<br>
+<div id="example-3">
+  <input v-model="parentMsg">
+  <br>
+  <child :my-message="parentMsg"></child>
+</div>
+
+<br>
+
+<script src="../vue.js"></script>
+<script>
+  // Vue.component('my-component', {
+  //   template: '<div>A custom component</div>'
+  // })
+
+  // new Vue({
+  //   el: "#example"
+  // })
+
+  var Child = {
+    template: '<div>A custom component</div>'
+  }
+
+  new Vue({
+    el: '#example',
+    components: {
+      'my-component': Child
+    }
+  })
+
+  Vue.component('simple-counter', {
+    template: '<button @click="counter +=1">{{counter}}</button>',
+    data: function() {
+      return {
+        counter: 0
+      }
+    }
+  })
+
+  new Vue({
+    el: '#example-2'
+  })
+
+  Vue.component('child', {
+    props: ['myMessage'],
+    template: '<span> {{ myMessage}} </span>'
+  })
+
+  new Vue({
+    el: '#example-3',
+    data: {
+      parentMsg: 'Message from parent'
+    }
+  })
+</script>
+
+<body>
+
+</body>
+
+</html>
